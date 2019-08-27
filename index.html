@@ -29,7 +29,7 @@
         <form id="qb-form" action="index.php" method="post" target="_self" onsubmit="">
 
           <h2>What information are you looking for?</h2>
-          <p>These options let you filter the information you are looking for. Additional filters <a href="https://www.oipa.nl/api/">are available</a> by querying OIPA manually.</p>
+          <p>These options let you filter the information you are looking for. Additional filters <a href="https://docs.oipa.nl/?version=latest">are available</a> by querying the datastore directly.</p>
 
           <div class="step-section">
             <div class="title">
@@ -1252,7 +1252,7 @@
     >ZOA : NL-KVK-41009723</option>
 
               </select>
-              <p class="explaination-text"><strong>WARNING:</strong> OIPA contains activities reported by both primary and secondary sources. A secondary source, such as the UNOCHA Financial Tracking Service (FTS), reports data it holds about other agencies’ activities. An agency may well report activities to both IATI and FTS, who in turn reports the same activities to IATI.</p>
+              <p class="explaination-text"><strong>WARNING:</strong> the datastore contains activities reported by both primary and secondary sources. A secondary source, such as the UNOCHA Financial Tracking Service (FTS), reports data it holds about other agencies’ activities. An agency may well report activities to both IATI and FTS, who in turn reports the same activities to IATI.</p>
             </div>
 
             <div class="row form-group">
@@ -5114,17 +5114,15 @@
                 <ul id="qb-grouping-list">
                   <li>
                     <label>
-                      <input type="radio" name="grouping" value="summary" id="grouping-1" aria-label="Summary"
-                                              checked="checked"
-                                            />
-                      <span class="tooltip-ui" data-toggle="tooltip" title="Information is not disaggregated, leading to repeated rows.">
+                      <input disabled="disabled" type="radio" name="grouping" value="summary" id="grouping-1" aria-label="Summary" />
+                      <span class="tooltip-ui" data-toggle="tooltip" title="Information is not disaggregated.">
                         No
                       </a>
                     </label>
                   </li>
                   <li>
                     <label>
-                      <input disabled="disabled" type="radio" name="grouping" value="by_sector" id="grouping-2" aria-label="By Sector"
+                      <input type="radio" name="grouping" value="by_sector" id="grouping-2" aria-label="By Sector" checked="checked"
                                             />
                       <span class="tooltip-ui" data-toggle="tooltip" title="Each Activity, Transaction or Budget row is repeated for each separate Sector reported. The corresponding percentage for the sector split is reported in a separate column. This allows you to easily add arithmetic to your spreadsheet to calculate values proportionately.">
                         Multi-sector expansion
@@ -5152,11 +5150,11 @@
                 <ul id="qb-sample-size-list">
                   <li>
                     <label>
-                      <input type="radio" name="sample-size" value="50 rows" id="sample-size-1" aria-label="50 rows"
+                      <input type="radio" name="sample-size" value="20 rows" id="sample-size-1" aria-label="20 rows"
                                               checked="checked"
                                             />
-                      <span class="tooltip-ui" data-toggle="tooltip" title="Preview your selection by viewing only the first 50 rows of data.">
-                        50 rows
+                      <span class="tooltip-ui" data-toggle="tooltip" title="Preview your selection by viewing only the first 20 rows of data.">
+                        20 rows
                       </a>
                     </label>
                   </li>
@@ -5167,7 +5165,6 @@
                       <span class="tooltip-ui" data-toggle="tooltip" title="View all of the data matching your query.">
                         Entire selection
                       </a>
-                      <p class="explaination-text"><strong>WARNING:</strong> Depending on the query, this may cause the query to take a long time to return your data.</p>
                     </label>
                   </li>
                 </ul>
@@ -5191,7 +5188,7 @@
         <div style="width:100%;height:1em"></div>
 
         <div style="display:none;" class="alert alert-success" id="js-query-link" role="alert">
-          <strong>Your link:</strong> <a id="query-link" href="https://www.oipa.nl/api/activities/?page_size=50&format=csv">https://www.oipa.nl/api/activities/?page_size=50&amp;format=csv</a> <span id="preview-link-wrapper">(<a id="preview-link" href="http://preview.iatistandard.org/" target="_blank" rel="noopener noreferrer">Preview as XML</a>)</span>
+          <strong>Your link:</strong> <a id="query-link" href="https://test-datastore.iatistandard.org/api/activities/?fields=all&page_size=20&format=csv">https://test-datastore.iatistandard.org/api/activities/?fields=all&page_size=20&amp;format=csv</a> <span id="preview-link-wrapper">(<a id="preview-link" href="http://preview.iatistandard.org/" target="_blank" rel="noopener noreferrer">Preview as XML</a>)</span>
         </div>
 
       </div><!-- end class="query-builder"-->
@@ -5199,10 +5196,10 @@
 
       <div class="row footer">
         <div class="col">
-          <p>Based on the IATI Query Builder, which is free software licenced under the GNU General Public License.<br/>
+          <p>Based on original <a href="http://datastore.iatistandard.org/query/">Datastore Query Builder</a>, which is free software licenced under the GNU General Public License.<br/>
           <ul>
-            <li><a href="https://github.com/andylolz/OIPA-Query-Builder" target="_blank" rel="noopener noreferrer nofollow">OIPA Query Builder on GitHub</a></li>
-            <li>OIPA documentation: <a href="https://www.oipa.nl/api/" target="_blank" rel="noopener noreferrer">https://www.oipa.nl/api/</a></li>
+            <li><a href="https://github.com/codeforIATI/datastore-query-builder">Datastore Query Builder on GitHub</a></li>
+            <li>Datastore documentation: <a href="https://docs.oipa.nl/?version=latest">https://docs.oipa.nl/?version=latest</a></li>
           </ul>
           </p>
         </div>
@@ -5239,11 +5236,13 @@ $(function() {
   QueryBuilder.LinkGen.getGrouping = function(){
     var grouping = $('#qb-grouping-list input:checked').val();
 
-    if(grouping === 'summary'){
-      return '';
-      } else {
-        return '/' + grouping;
-    }
+    return '';
+
+    // if(grouping === 'summary'){
+    //   return '';
+    //   } else {
+    //     return '/' + grouping;
+    // }
   };
 
   /*
@@ -5252,7 +5251,7 @@ $(function() {
   QueryBuilder.LinkGen.getSampleSize = function(){
     var sampleSize = $('#qb-sample-size-list input:checked').val();
 
-    if(sampleSize === '50 rows'){
+    if(sampleSize === '20 rows'){
       return '';
     } else {
       return 'stream=True';
@@ -5317,7 +5316,7 @@ $(function() {
     Generate the link from the page.
   */
   QueryBuilder.LinkGen.createLink = function(fileType){
-    var baseURL = 'https://www.oipa.nl/api/';
+    var baseURL = 'https://test-datastore.iatistandard.org/api/';
     var format = QueryBuilder.LinkGen.getFormat();
     var grouping = QueryBuilder.LinkGen.getGrouping();
     var reportingOrgs = QueryBuilder.LinkGen.getMultiSelectInfo('reporting_organisation');
@@ -5349,7 +5348,7 @@ $(function() {
 
     fileType = fileType || 'csv';
 
-    return baseURL + format + grouping + '?page_size=50&format=' + fileType + queryString;
+    return baseURL + format + grouping + '?fields=all&page_size=20&format=' + fileType + queryString;
   };
 
   /*
