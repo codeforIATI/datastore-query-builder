@@ -1299,7 +1299,7 @@
             <div class="clearfix"></div>
 
             <div class="row form-group">
-              <label for="sector_code">
+              <label for="sector">
                 <div>
                   <span class="tooltip-ui" data-toggle="tooltip" title="Choose the sector or sectors you are looking for.">
                     Select sector (eg Basic Health Care = 12220)
@@ -1307,7 +1307,7 @@
                 </div>
               </label>
               <div class="clearfix"></div>
-              <select data-placeholder="Choose a sector..." multiple class="chosen-select form-control" id="sector" name="sector_code[]">
+              <select data-placeholder="Choose a sector..." multiple class="chosen-select form-control" id="sector" name="sector[]">
                 <option value="">- None -</option>
   <optgroup label="111 Education, level unspecified">
       <option value="11110"
@@ -5321,7 +5321,7 @@ $(function() {
     var grouping = QueryBuilder.LinkGen.getGrouping();
     var reportingOrgs = QueryBuilder.LinkGen.getMultiSelectInfo('reporting_organisation_identifier');
     var reportingOrgTypes = QueryBuilder.LinkGen.getMultiSelectInfo('reporting-org.type');
-    var sectors = QueryBuilder.LinkGen.getMultiSelectInfo('sector_code');
+    var sectors = QueryBuilder.LinkGen.getMultiSelectInfo('sector');
     var recipientCountries = QueryBuilder.LinkGen.getMultiSelectInfo('recipient_country');
     var recipientRegions = QueryBuilder.LinkGen.getMultiSelectInfo('recipient_region');
     var startDateLT = QueryBuilder.LinkGen.getCalendarDate('actual_start_date_lte');
