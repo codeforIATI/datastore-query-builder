@@ -39,7 +39,7 @@
             <div class="clearfix"></div>
 
             <div class="row form-group">
-              <label for="reporting_organisation">
+              <label for="reporting_organisation_identifier">
                 <div>
                   <span class="tooltip-ui" data-toggle="tooltip" title="The reporting organisation is the publisher of the IATI data. You would choose this filter to analyse a particular donor or agency's data. This might typically be used in conjunction with a country and/or a sector.">
                     Select reporting organisation (eg UK DFID = GB-GOV-1)
@@ -48,7 +48,7 @@
                 <div dir="ltr"></div>
               </label>
               <div class="clearfix"></div>
-              <select data-placeholder="Choose a reporting organisation..." multiple class="chosen-select form-control" id="reporting-org" name="reporting_organisation[]">
+              <select data-placeholder="Choose a reporting organisation..." multiple class="chosen-select form-control" id="reporting-org" name="reporting_organisation_identifier[]">
                 <option value="">- None -</option>
   <option value="NP-SWC-27693"
     >Aasaman Nepal : NP-SWC-27693</option>
@@ -5319,7 +5319,7 @@ $(function() {
     var baseURL = 'https://test-datastore.iatistandard.org/api/';
     var format = QueryBuilder.LinkGen.getFormat();
     var grouping = QueryBuilder.LinkGen.getGrouping();
-    var reportingOrgs = QueryBuilder.LinkGen.getMultiSelectInfo('reporting_organisation');
+    var reportingOrgs = QueryBuilder.LinkGen.getMultiSelectInfo('reporting_organisation_identifier');
     var reportingOrgTypes = QueryBuilder.LinkGen.getMultiSelectInfo('reporting-org.type');
     var sectors = QueryBuilder.LinkGen.getMultiSelectInfo('sector');
     var recipientCountries = QueryBuilder.LinkGen.getMultiSelectInfo('recipient_country');
