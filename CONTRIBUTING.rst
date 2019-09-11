@@ -9,20 +9,13 @@ How to report a bug or request a feature
 ========================================
 If you are able to work with GitHub then please "Create an issue"
 
-Before creating a new issue check to see if the issue already exists. If not then please do report it. If you have permissions to assign the issue to people and milestones then try to select suitable options.
+Before creating a new issue check to see if the issue already exists. If not then please do report it.
 
 If you are not comfortable working with GitHub, but would still like to contribute, then talk to us.  Details at: https://github.com/codeforIATI
 
 
 How to contribute code and documents
 ====================================
-
-How we use branches in this repository
---------------------------------------
-
-* `dev` represents our main development branch
-* `master` is the branch we are currently using for our deployed instance of the code
-* Other branches represent development work or bug fixes.
 
 Submitting changes
 ------------------
@@ -31,8 +24,8 @@ Submitting changes
 * Make sure you're working on top of an up to date copy of the `master` branch
     - Create a branch named after the work you're doing (if you're targeting a specific issue, start the branch name with the issue number e.g. ``42-feature-name``)
 * Do your work
-    - If your work addresses a specific issue, reference that issue in your commit message by starting the commit message with ``[#issue number]`` e.g. ``[#64]``
 * Create a pull request
+    - If your work addresses a specific issue, reference that issue in your pull request comment
 
 Specific Tasks:
 ===============
@@ -48,19 +41,6 @@ Can you improve the user interface? Can you make it look 'nicer'?
 Documentation
 -------------
 We would welcome any improvements to how the code or the application is documented.
-
-Statistics
-----------
-Can you check that the generated statstics are telling us what we think they are telling us?
-Do you have other tests/statistics that we could be generating?
-
-Unit Tests
-----------
-Can you improve the unit testing to make deployment more robust?
-
-Fix a Bitesize issue
---------------------
-We mark some of issues as 'Bitesize'. Generally these will help ease you into the code and help you find your way around.
 
 Talk to us
 ==========
