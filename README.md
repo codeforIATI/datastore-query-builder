@@ -1,5 +1,7 @@
 # Datastore Query Builder
 
-A simple form that will build a query string that can then be used to fetch data from [the new IATI Datastore](https://iatistandard.org/en/news/new-iati-datastore-api-launched-for-testing/).
+IATI’s official datastore query builder is available here:
 
-See it in action here - https://datastore-query-builder.codeforiati.org
+https://iatidatastore.iatistandard.org/querybuilder/core-filters
+
+This repository remains here as a redirect to the new location.
